@@ -35,7 +35,7 @@
     </div>
   </div>
 
-  <button class="btn btn-primary mb-3" disabled>
+  <button class="btn btn-outline-light mb-3" disabled>
     <i class="fas fa-user"></i>
     <small class="ml-2"><?= $_SESSION['user:name'] ?></small>
   </button>

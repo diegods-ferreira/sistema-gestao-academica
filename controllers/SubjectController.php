@@ -2,6 +2,8 @@
   require_once '../services/subjects/CreateSubjectService.php';
   require_once '../services/subjects/UpdateSubjectService.php';
   require_once '../services/subjects/DeleteSubjectService.php';
+  require_once '../services/subjects/CountSubjectProfessorsService.php';
+  require_once '../services/subjects/CountSubjectClassesService.php';
 
   class SubjectController {
     public function create() {
@@ -79,6 +81,28 @@
     public function delete() {
       $subjectId = $_POST['id'];
       $actualReport = $_POST['actual_report'];
+
+      $subjectDependencies = CountSubjectProfessorsService::execute($subjectId);
+
+      if ($subjectDependencies) {
+        header(
+          'Location: ../pages/Subjects?' .
+          ($actualReport !== '' ? "report=$actualReport&" : '') .
+          'error=subject-has-professors'
+        );
+        return;
+      }
+
+      $subjectDependencies = CountSubjectClassesService::execute($subjectId);
+
+      if ($subjectDependencies) {
+        header(
+          'Location: ../pages/Subjects?' .
+          ($actualReport !== '' ? "report=$actualReport&" : '') .
+          'error=subject-has-classes'
+        );
+        return;
+      }
 
       $wasSubjectDeleted = DeleteSubjectService::execute($subjectId);
 

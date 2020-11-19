@@ -9,7 +9,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <p>Tem certeza que deseja excluir essa disciplina?</p>
+          <p>Tem certeza que deseja excluir essa disciplina? Podem haver professores e/ou turmas vinculadas à ela. </p>
           <input hidden name="id" id="delete-subject-id">
           <input hidden name="actual_report" value="<?= isset($_GET['report']) ? $_GET['report'] : '' ?>">
         </div>

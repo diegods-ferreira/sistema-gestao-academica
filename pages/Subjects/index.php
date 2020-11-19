@@ -54,6 +54,8 @@
                   <?= $_GET['error'] === 'subject-not-created' ? 'Ocorreu um erro ao tentar criar a disciplina. Tente novamente mais tarde.' : '' ?>
                   <?= $_GET['error'] === 'subject-not-updated' ? 'Ocorreu um erro ao tentar editar a disciplina. Tente novamente mais tarde.' : '' ?>
                   <?= $_GET['error'] === 'subject-not-deleted' ? 'Ocorreu um erro ao tentar excluir a disciplina. Tente novamente mais tarde.' : '' ?>
+                  <?= $_GET['error'] === 'subject-has-professors' ? 'Essa disciplina possui professores vinculados. Não foi possível excluí-la.' : '' ?>
+                  <?= $_GET['error'] === 'subject-has-classes' ? 'Essa disciplina possui turmas vinculadas. Não foi possível excluí-la.' : '' ?>
 
                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>

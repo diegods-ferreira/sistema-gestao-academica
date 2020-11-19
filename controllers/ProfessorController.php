@@ -3,7 +3,6 @@
   require_once '../services/professors/UpdateProfessorService.php';
   require_once '../services/professors/DeleteProfessorService.php';
   require_once '../services/professors/CountProfessorClassesService.php';
-  require_once '../services/professors/CountProfessorSubjectsService.php';
 
   class ProfessorController {
     public function create() {
@@ -82,18 +81,7 @@
 
       $professorDependencies = CountProfessorClassesService::execute($professorId);
 
-      if ($professorDependencies) {
-        header(
-          'Location: ../pages/Professors?' .
-          ($actualReport !== '' ? "report=$actualReport&" : '') .
-          'error=professor-has-subjects'
-        );
-        return;
-      }
-
-      $professorDependencies = CountProfessorSubjectsService::execute($professorId);
-
-      if ($professorDependencies) {
+      if ($professorDependencies->dependencies) {
         header(
           'Location: ../pages/Professors?' .
           ($actualReport !== '' ? "report=$actualReport&" : '') .

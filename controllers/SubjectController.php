@@ -84,7 +84,7 @@
 
       $subjectDependencies = CountSubjectProfessorsService::execute($subjectId);
 
-      if ($subjectDependencies) {
+      if ($subjectDependencies->dependencies) {
         header(
           'Location: ../pages/Subjects?' .
           ($actualReport !== '' ? "report=$actualReport&" : '') .
@@ -95,7 +95,7 @@
 
       $subjectDependencies = CountSubjectClassesService::execute($subjectId);
 
-      if ($subjectDependencies) {
+      if ($subjectDependencies->dependencies) {
         header(
           'Location: ../pages/Subjects?' .
           ($actualReport !== '' ? "report=$actualReport&" : '') .

@@ -82,7 +82,7 @@
 
       $courseDependencies = CountCourseSubjectsService::execute($courseId);
 
-      if ($courseDependencies) {
+      if ($courseDependencies->dependencies) {
         header(
           'Location: ../pages/Courses?' .
           ($actualReport !== '' ? "report=$actualReport&" : '') .
@@ -93,7 +93,7 @@
 
       $courseDependencies = CountStudentsInCourseService::execute($courseId);
 
-      if ($courseDependencies) {
+      if ($courseDependencies->dependencies) {
         header(
           'Location: ../pages/Courses?' .
           ($actualReport !== '' ? "report=$actualReport&" : '') .

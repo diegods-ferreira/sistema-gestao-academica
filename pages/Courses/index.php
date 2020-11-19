@@ -54,6 +54,8 @@
                   <?= $_GET['error'] === 'course-not-created' ? 'Ocorreu um erro ao tentar criar o curso. Tente novamente mais tarde.' : '' ?>
                   <?= $_GET['error'] === 'course-not-updated' ? 'Ocorreu um erro ao tentar editar o curso. Tente novamente mais tarde.' : '' ?>
                   <?= $_GET['error'] === 'course-not-deleted' ? 'Ocorreu um erro ao tentar excluir o curso. Tente novamente mais tarde.' : '' ?>
+                  <?= $_GET['error'] === 'course-has-subjects' ? 'Esse curso possui disciplinas vinculadas. Não foi possível excluí-lo.' : '' ?>
+                  <?= $_GET['error'] === 'course-has-students' ? 'Esse curso possui alunos vinculados. Não foi possível excluí-lo.' : '' ?>
 
                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>

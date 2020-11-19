@@ -2,6 +2,8 @@
   require_once '../services/courses/CreateCourseService.php';
   require_once '../services/courses/UpdateCourseService.php';
   require_once '../services/courses/DeleteCourseService.php';
+  require_once '../services/courses/CountCourseSubjects.php';
+  require_once '../services/courses/CountStudentsInCourseService.php';
 
   class CourseController {
     public function create() {
@@ -77,6 +79,28 @@
     public function delete() {
       $courseId = $_POST['id'];
       $actualReport = $_POST['actual_report'];
+
+      $courseDependencies = CountCourseSubjects::execute($courseId);
+
+      if ($courseDependencies) {
+        header(
+          'Location: ../pages/Courses?' .
+          ($actualReport !== '' ? "report=$actualReport&" : '') .
+          'error=course-has-subjects'
+        );
+        return;
+      }
+
+      $courseDependencies = CountStudentsInCourseService::execute($courseId);
+
+      if ($courseDependencies) {
+        header(
+          'Location: ../pages/Courses?' .
+          ($actualReport !== '' ? "report=$actualReport&" : '') .
+          'error=course-has-students'
+        );
+        return;
+      }
 
       $wasCourseDeleted = DeleteCourseService::execute($courseId);
 

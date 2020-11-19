@@ -2,6 +2,8 @@
   require_once '../services/professors/CreateProfessorService.php';
   require_once '../services/professors/UpdateProfessorService.php';
   require_once '../services/professors/DeleteProfessorService.php';
+  require_once '../services/professors/CountProfessorClassesService.php';
+  require_once '../services/professors/CountProfessorSubjectsService.php';
 
   class ProfessorController {
     public function create() {
@@ -77,6 +79,28 @@
     public function delete() {
       $professorId = $_POST['id'];
       $actualReport = $_POST['actual_report'];
+
+      $professorDependencies = CountProfessorClassesService::execute($professorId);
+
+      if ($professorDependencies) {
+        header(
+          'Location: ../pages/Professors?' .
+          ($actualReport !== '' ? "report=$actualReport&" : '') .
+          'error=professor-has-subjects'
+        );
+        return;
+      }
+
+      $professorDependencies = CountProfessorSubjectsService::execute($professorId);
+
+      if ($professorDependencies) {
+        header(
+          'Location: ../pages/Professors?' .
+          ($actualReport !== '' ? "report=$actualReport&" : '') .
+          'error=professor-has-classes'
+        );
+        return;
+      }
 
       $wasProfessorDeleted = DeleteProfessorService::execute($professorId);
 

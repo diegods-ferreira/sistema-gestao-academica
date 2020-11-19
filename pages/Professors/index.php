@@ -54,6 +54,8 @@
                   <?= $_GET['error'] === 'professor-not-created' ? 'Ocorreu um erro ao tentar criar o professor. Tente novamente mais tarde.' : '' ?>
                   <?= $_GET['error'] === 'professor-not-updated' ? 'Ocorreu um erro ao tentar editar o professor. Tente novamente mais tarde.' : '' ?>
                   <?= $_GET['error'] === 'professor-not-deleted' ? 'Ocorreu um erro ao tentar excluir o professor. Tente novamente mais tarde.' : '' ?>
+                  <?= $_GET['error'] === 'professor-has-subjects' ? 'Esse professor possui disciplinas vinculadas. Não foi possível excluí-lo.' : '' ?>
+                  <?= $_GET['error'] === 'professor-has-classes' ? 'Esse professor possui turmas vinculadas. Não foi possível excluí-lo.' : '' ?>
 
                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>

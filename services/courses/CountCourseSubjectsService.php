@@ -1,7 +1,7 @@
 <?php
-  class CountCourseSubjects {
-    public static function execute() {
-      $connection = Connection::connect($id);
+  class CountCourseSubjectsService {
+    public static function execute($id) {
+      $connection = Connection::connect();
 
       $query = '
         select count(1) as dependencies

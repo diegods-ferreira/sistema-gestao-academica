@@ -2,7 +2,7 @@
   require_once '../services/courses/CreateCourseService.php';
   require_once '../services/courses/UpdateCourseService.php';
   require_once '../services/courses/DeleteCourseService.php';
-  require_once '../services/courses/CountCourseSubjects.php';
+  require_once '../services/courses/CountCourseSubjectsService.php';
   require_once '../services/courses/CountStudentsInCourseService.php';
 
   class CourseController {
@@ -80,7 +80,7 @@
       $courseId = $_POST['id'];
       $actualReport = $_POST['actual_report'];
 
-      $courseDependencies = CountCourseSubjects::execute($courseId);
+      $courseDependencies = CountCourseSubjectsService::execute($courseId);
 
       if ($courseDependencies) {
         header(

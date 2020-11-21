@@ -23,7 +23,8 @@
         <td class="col-1 d-flex align-items-center justify-content-center"><?= $class->students_number ?></td>
         <td class="col-7 d-flex align-items-center"><?= $class->description ?></td>
         <td class="col-2 d-flex align-items-center justify-content-center">
-          <a class="text-info" href="../../pages/Classes?page=class-subjects&class_id=<?= $class->id ?>">Ver Disciplinas</a>
+          <?php $report = isset($_GET['report']) ? 'report=' . $_GET['report'] . '&' : '' ?>
+          <a class="text-info" href="../../pages/Classes?<?= $report ?>page=class-subjects&class_id=<?= $class->id ?>">Ver Disciplinas</a>
         </td>
         <td class="col-1">
           <div class="row d-flex align-items-center justify-content-center">

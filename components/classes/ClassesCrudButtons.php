@@ -32,6 +32,8 @@
   }
 
   function fillUpDetailClassModalFields(id, description, created_at, updated_at, user_name) {
+    const report = urlParams.get('report');
+
     const options = {
       year: 'numeric', month: 'numeric', day: 'numeric',
       hour: 'numeric', minute: 'numeric', second: 'numeric',
@@ -44,7 +46,7 @@
     document.getElementById('detail-updated-at').innerHTML = Intl.DateTimeFormat('pt-BR', options).format(new Date(updated_at));
     document.getElementById('detail-user-name').innerHTML = user_name;
     document.getElementById('detail-subjects').innerHTML = `
-      <a class="btn btn-outline-info btn-block" href="../../pages/Classes?page=class-subjects&class_id=${id}">Ver Disciplinas</a>
+      <a class="btn btn-outline-info btn-block" href="../../pages/Classes?${report ? `report=${report}` : ''}page=class-subjects&class_id=${id}">Ver Disciplinas</a>
     `;
   }
 

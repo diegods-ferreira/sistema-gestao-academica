@@ -45,58 +45,64 @@
     <!-- Page main container -->
     <div class="col-10" style="overflow: auto;">
       <div class="row mt-5">
-        <div class="col-10">
-          <?php if (isset($_GET['error'])) { ?>
-            <div class="row mb-3">
-              <div class="col">
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                  <?= $_GET['error'] === 'empty-fields' ? 'Verifique se todos os campos estão preenchidos!' : '' ?>
-                  <?= $_GET['error'] === 'class-not-created' ? 'Ocorreu um erro ao tentar criar a turma. Tente novamente mais tarde.' : '' ?>
-                  <?= $_GET['error'] === 'class-not-updated' ? 'Ocorreu um erro ao tentar editar a turma. Tente novamente mais tarde.' : '' ?>
-                  <?= $_GET['error'] === 'class-not-deleted' ? 'Ocorreu um erro ao tentar excluir a turma. Tente novamente mais tarde.' : '' ?>
-                  <?= $_GET['error'] === 'class-has-students' ? 'Essa turma possui turmas vinculadas. Não foi possível excluí-la.' : '' ?>
 
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
+        <?php if (isset($_GET['page']) and $_GET['page'] === 'class-subjects' and isset($_GET['class_id'])) { ?>
+          <?php require_once '../../components/classes/ClassSubjects.php' ?>
+        <?php } else { ?>
+          <div class="col-10">
+            <?php if (isset($_GET['error'])) { ?>
+              <div class="row mb-3">
+                <div class="col">
+                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <?= $_GET['error'] === 'empty-fields' ? 'Verifique se todos os campos estão preenchidos!' : '' ?>
+                    <?= $_GET['error'] === 'class-not-created' ? 'Ocorreu um erro ao tentar criar a turma. Tente novamente mais tarde.' : '' ?>
+                    <?= $_GET['error'] === 'class-not-updated' ? 'Ocorreu um erro ao tentar editar a turma. Tente novamente mais tarde.' : '' ?>
+                    <?= $_GET['error'] === 'class-not-deleted' ? 'Ocorreu um erro ao tentar excluir a turma. Tente novamente mais tarde.' : '' ?>
+                    <?= $_GET['error'] === 'class-has-students' ? 'Essa turma possui turmas vinculadas. Não foi possível excluí-la.' : '' ?>
+
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          <?php } ?>
+            <?php } ?>
 
-          <?php if (isset($_GET['success'])) { ?>
-            <div class="row mb-3">
-              <div class="col">
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                  <?= $_GET['success'] === 'class-created' ? 'Turma criada com sucesso!' : '' ?>
-                  <?= $_GET['success'] === 'class-updated' ? 'Turma editada com sucesso!' : '' ?>
-                  <?= $_GET['success'] === 'class-deleted' ? 'Turma excluída com sucesso!' : '' ?>
+            <?php if (isset($_GET['success'])) { ?>
+              <div class="row mb-3">
+                <div class="col">
+                  <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <?= $_GET['success'] === 'class-created' ? 'Turma criada com sucesso!' : '' ?>
+                    <?= $_GET['success'] === 'class-updated' ? 'Turma editada com sucesso!' : '' ?>
+                    <?= $_GET['success'] === 'class-deleted' ? 'Turma excluída com sucesso!' : '' ?>
 
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          <?php } ?>
+            <?php } ?>
 
-          <div class="d-flex align-items-center justify-content-between">
-            <h3 class="mb-3">Turmas</h3>
-            <button class="btn btn-success" data-toggle="modal" data-target="#createClassModal">
-              <i class="fas fa-plus"></i>
-              <span>Adicionar</span>
-            </button>
+            <div class="d-flex align-items-center justify-content-between">
+              <h3 class="mb-3">Turmas</h3>
+              <button class="btn btn-success" data-toggle="modal" data-target="#createClassModal">
+                <i class="fas fa-plus"></i>
+                <span>Adicionar</span>
+              </button>
+            </div>
+
+            <!-- Rendering the report based on the REPORT GET PARAM -->
+            <?php
+              $report = isset($_GET['report']) ? $_GET['report'] : 'classes-list';
+              require_once "../../reports/classes/$report.php";
+            ?>
           </div>
 
-          <!-- Rendering the report based on the REPORT GET PARAM -->
-          <?php
-            $report = isset($_GET['report']) ? $_GET['report'] : 'classes-list';
-            require_once "../../reports/classes/$report.php";
-          ?>
-        </div>
+          <!-- ClassesReportsList component import -->
+          <?php require_once '../../components/classes/ClassesReportsList.php' ?>
+        <?php } ?>
 
-        <!-- ClassesReportsList component import -->
-        <?php require_once '../../components/classes/ClassesReportsList.php' ?>
       </div>
     </div>
   </div>

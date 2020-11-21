@@ -23,7 +23,7 @@
         <span class="col">Professores</span>
       </a>
 
-      <a class="nav-link text-light" id="classes-link" href="#classes-pane">
+      <a class="nav-link text-light" id="classes-link" href="../pages/Classes">
         <i class="col-1 fas fa-users"></i>
         <span class="col">Turmas</span>
       </a>

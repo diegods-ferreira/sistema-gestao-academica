@@ -28,7 +28,7 @@
         <span class="col">Turmas</span>
       </a>
 
-      <a class="nav-link text-light" id="students-link" href="#students-pane">
+      <a class="nav-link text-light" id="students-link" href="../pages/Students">
         <i class="col-1 fas fa-user-friends"></i>
         <span class="col">Alunos</span>
       </a>

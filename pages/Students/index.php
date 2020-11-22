@@ -47,7 +47,7 @@
       <div class="row mt-5">
 
         <?php if (isset($_GET['page']) and $_GET['page'] === 'student-courses' and isset($_GET['student_id'])) { ?>
-          <?php // require_once '../../components/students/StudentSubjects.php' ?>
+          <?php require_once '../../components/students/StudentCourses.php' ?>
         <?php } else { ?>
           <div class="col-10">
             <?php if (isset($_GET['error'])) { ?>

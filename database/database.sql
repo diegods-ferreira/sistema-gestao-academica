@@ -77,12 +77,13 @@ create table class_subjects (
 create table students (
   id integer not null primary key auto_increment,
   name varchar(100) not null,
-  class_id integer not null,
+  cpf char(11) not null,
+  birth_date date not null,
+  phone varchar(15),
+  cell_phone varchar(15),
   user_id integer not null,
   created_at datetime default current_timestamp(),
   updated_at datetime default current_timestamp(),
-
-  foreign key (class_id) references classes (id),
   foreign key (user_id) references users (id)
 );
 
@@ -90,11 +91,13 @@ create table student_courses (
   id integer not null primary key auto_increment,
   student_id integer not null,
   course_id integer not null,
+  class_id integer not null,
   status integer not null default 1,
   user_id integer not null,
   created_at datetime default current_timestamp(),
   updated_at datetime default current_timestamp()
 );
-alter table student_courses add foreign key (professor_id) foreign key (student_id) references students (id);
+alter table student_courses add foreign key (student_id) references students (id);
 alter table student_courses add foreign key (course_id) references courses (id);
+alter table student_courses add foreign key (class_id) references classes (id);
 alter table student_courses add foreign key (user_id) references users (id);

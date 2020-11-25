@@ -55,7 +55,7 @@
             <?php
               require_once '../../services/courses/GetCoursesAbstractService.php';
               $coursesAbstract = GetCoursesAbstractService::execute();
-              $lastFiveCourses = explode(',', $coursesAbstract->courses_serialized);
+              $lastFiveCourses = array_slice(explode(',', $coursesAbstract->courses_serialized), 0, 5);
             ?>
             <p class="card-text"><strong><?= $coursesAbstract->courses_number ?></strong> cursos cadastrados até o momento.</p>
             <div>
@@ -82,7 +82,7 @@
             <?php
               require_once '../../services/subjects/GetSubjectsAbstractService.php';
               $subjectsAbstract = GetSubjectsAbstractService::execute();
-              $lastFiveSubjects = explode(',', $subjectsAbstract->subjects_serialized);
+              $lastFiveSubjects = array_slice(explode(',', $subjectsAbstract->subjects_serialized), 0, 5);
             ?>
             <p class="card-text"><strong><?= $subjectsAbstract->subjects_number ?></strong> disciplinas cadastradas até o momento.</p>
             <div>
@@ -109,7 +109,7 @@
             <?php
               require_once '../../services/professors/GetProfessorsAbstractService.php';
               $professorsAbstract = GetProfessorsAbstractService::execute();
-              $lastFiveProfessors = explode(',', $professorsAbstract->professors_serialized);
+              $lastFiveProfessors = array_slice(explode(',', $professorsAbstract->professors_serialized), 0, 5);
             ?>
             <p class="card-text"><strong><?= $professorsAbstract->professors_number ?></strong> professores cadastrados até o momento.</p>
             <div>
@@ -136,7 +136,7 @@
             <?php
               require_once '../../services/classes/GetClassesAbstractService.php';
               $classesAbstract = GetClassesAbstractService::execute();
-              $lastFiveClasses = explode(',', $classesAbstract->classes_serialized);
+              $lastFiveClasses = array_slice(explode(',', $classesAbstract->classes_serialized), 0, 5);
             ?>
             <p class="card-text"><strong><?= $classesAbstract->classes_number ?></strong> turmas cadastradas até o momento.</p>
             <div>
@@ -169,7 +169,7 @@
             <?php
               require_once '../../services/students/GetStudentsAbstractService.php';
               $studentsAbstract = GetStudentsAbstractService::execute();
-              $lastFiveStudents = explode(',', $studentsAbstract->students_serialized);
+              $lastFiveStudents = array_slice(explode(',', $studentsAbstract->students_serialized), 0, 5);
             ?>
             <p class="card-text"><strong><?= $studentsAbstract->students_number ?></strong> alunos cadastrados até o momento.</p>
             <div>

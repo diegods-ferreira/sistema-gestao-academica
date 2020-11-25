@@ -1,5 +1,5 @@
 <?php
-  require_once '../services/courses/CreateUserService.php';
+  require_once '../services/users/CreateUserService.php';
 
   class UserController {
     public function create() {
@@ -7,7 +7,7 @@
       $email = $_POST['email'];
       $password = $_POST['password'];
 
-      if ($user === '' or $email === '' or $password === '') {
+      if ($name === '' or $email === '' or $password === '') {
         header('Location: ../pages/SignUp?error=empty-fields');
         return;
       }
